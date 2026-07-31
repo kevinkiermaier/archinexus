@@ -1,0 +1,62 @@
+<%- include('partials-head') %>
+<div class="container">
+  <div class="card">
+    <h1>인력 직접 등록 (관리자)</h1>
+    <div class="notice">잡코리아 등 외부에서 수집한 프로필을 등록할 경우, 반드시 본인 동의를 받은 뒤 "개인정보 동의"를 체크하세요.</div>
+    <form method="POST" action="/admin/vendors">
+      <div class="two-col">
+        <div><label>이름 *</label><input type="text" name="name" required></div>
+        <div><label>직군 *</label>
+          <select name="role" required>
+            <option value="">선택</option>
+            <% roles.forEach(function(r){ %><option value="<%= r %>"><%= r %></option><% }) %>
+          </select>
+        </div>
+      </div>
+      <div class="two-col">
+        <div><label>경력연차</label><input type="number" name="career_years"></div>
+        <div><label>등급</label>
+          <select name="grade">
+            <option value="">선택</option>
+            <% grades.forEach(function(g){ %><option value="<%= g %>"><%= g %></option><% }) %>
+          </select>
+        </div>
+      </div>
+      <label>전문분야/기술스택</label>
+      <input type="text" name="expertise">
+      <div class="two-col">
+        <div><label>연락처</label><input type="tel" name="phone"></div>
+        <div><label>이메일</label><input type="email" name="email"></div>
+      </div>
+      <div class="two-col">
+        <div><label>가용시점</label><input type="date" name="available_date"></div>
+        <div><label>근무형태</label>
+          <select name="work_type"><option value="상주">상주</option><option value="재택">재택</option><option value="협의">협의</option></select>
+        </div>
+      </div>
+      <label>희망단가</label>
+      <input type="text" name="rate">
+      <label>레퍼런스</label>
+      <textarea name="reference"></textarea>
+      <div class="two-col">
+        <div><label>소싱경로</label><input type="text" name="source" placeholder="예: 잡코리아, 지인 네트워크"></div>
+        <div><label>상태</label>
+          <select name="status">
+            <% statuses.forEach(function(s){ %><option value="<%= s %>"><%= s %></option><% }) %>
+          </select>
+        </div>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" name="consent" id="consent">
+        <label for="consent" style="margin:0;">개인정보 활용 동의 확인함</label>
+      </div>
+      <label>비고</label>
+      <textarea name="note"></textarea>
+      <div style="margin-top:20px;">
+        <button class="btn" type="submit">저장</button>
+        <a class="btn secondary" href="/admin/vendors">취소</a>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('partials-foot') %>

@@ -1,0 +1,111 @@
+<%- include('partials-head') %>
+
+<section class="hero">
+  <span class="eyebrow">ARCHINEXUS · CONSULTING 2.0</span>
+  <h1>당신의 문제를, 이미 풀어본 사람과 연결합니다</h1>
+  <p class="sub">TA · AA · DBA · SWA · SA · PM · IT컨설턴트 — 주니어 개발자 마켓이 아닌, 설계와 의사결정을 책임지는 상급 인력만 검증해 연결하는 매칭 플랫폼입니다.</p>
+  <div class="cta-row">
+    <a class="btn large" href="/register">전문가로 등록하기</a>
+    <a class="btn large outline" href="/request">기업 의뢰하기</a>
+  </div>
+</section>
+
+<div class="stat-band">
+  <div><div class="big-num">7</div><div class="big-label">전문 직군만 취급 (TA·AA·DBA·SWA·SA·PM·IT컨설턴트)</div></div>
+  <div><div class="big-num">3단계</div><div class="big-label">검증 후에만 매칭 진행</div></div>
+  <div><div class="big-num">0원</div><div class="big-label">등록 비용 — 매칭 성사 시에만 수수료 발생</div></div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">WHO WE SERVE</span>
+  <h2>누구를 위한 서비스인가</h2>
+  <p class="section-sub">발주처, 원사업자, 전문가 — 세 축 모두에게 맞는 방식으로 연결합니다.</p>
+  <div class="segment-grid">
+    <div class="segment-card">
+      <span class="tag">공공기관 · 발주처</span>
+      <h3>SW사업에 필요한 상급 인력을 빠르게</h3>
+      <p>나라장터 낙찰정보를 기반으로 사업 착수 시점에 맞춰, 도급·위탁 계약 컴플라이언스까지 확인된 인력을 제안합니다.</p>
+      <a href="/request">기업 의뢰하기 →</a>
+    </div>
+    <div class="segment-card">
+      <span class="tag">SI/SM 원사업자</span>
+      <h3>벤치 부족을 메워줄 검증된 아키텍트·PM</h3>
+      <p>프로젝트 착수는 임박했는데 내부 인력이 부족할 때, 검증된 인력풀에서 빠르게 매칭받을 수 있습니다.</p>
+      <a href="/request">기업 의뢰하기 →</a>
+    </div>
+    <div class="segment-card">
+      <span class="tag">전문가 · 등록자</span>
+      <h3>내 커리어에 맞는 프로젝트만 제안받기</h3>
+      <p>일반 프리랜서 마켓과 달리, TA·AA·DBA·SWA·SA·PM·IT컨설턴트 경력에 맞는 프로젝트만 담당자가 직접 확인 후 제안합니다.</p>
+      <a href="/register">전문가로 등록하기 →</a>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="background:#fff;">
+  <span class="eyebrow">WHY ARCHINEXUS</span>
+  <h2>일반 프리랜서 플랫폼과 다른 점</h2>
+  <p class="section-sub">위시켓·크몽·원티드긱스가 다루지 않는 영역에 집중합니다.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>7개 직군만 취급</h3>
+      <p>주니어 개발자는 다루지 않고, 설계·의사결정 단의 상급 인력만 검증해 매칭합니다.</p>
+    </div>
+    <div class="feature-card">
+      <h3>계약 컴플라이언스</h3>
+      <p>도급·위탁 계약의 불법파견 리스크를 체크하고, 표준계약서 기반으로 안전하게 진행합니다.</p>
+    </div>
+    <div class="feature-card">
+      <h3>공공기관 특화</h3>
+      <p>나라장터 낙찰정보를 기반으로 공공 SW사업에 필요한 인력 수요를 선제적으로 파악합니다.</p>
+    </div>
+    <div class="feature-card">
+      <h3>단계형 수수료</h3>
+      <p>재계약·소개가 이어질수록 수수료가 낮아지는 구조로, 장기적인 신뢰 관계를 우선합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">HOW IT WORKS</span>
+  <h2>진행 방식</h2>
+  <p class="section-sub">문의부터 투입까지 3단계</p>
+  <div class="process-row">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <h3>의뢰 등록</h3>
+      <p>필요 직군·기간·예산을 간단히 알려주세요.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <h3>전문가 매칭</h3>
+      <p>검증된 인력풀에서 담당자가 직접 확인 후 추천합니다.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <h3>계약 및 투입</h3>
+      <p>컴플라이언스 체크 후 계약, 프로젝트에 투입됩니다.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="background:#fff;">
+  <span class="eyebrow">EXPERTISE</span>
+  <h2>전문 직군</h2>
+  <div class="grid-stats">
+    <% roles.forEach(function(r){ %>
+      <div class="stat-box"><div class="num"><%= r %></div><div class="label">전문 직군</div></div>
+    <% }) %>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>지금 바로 시작하세요</h2>
+  <p>전문가로 등록하거나, 프로젝트에 필요한 인력을 의뢰해보세요.</p>
+  <div class="cta-row">
+    <a class="btn large" href="/register">전문가로 등록하기</a>
+    <a class="btn large outline" href="/request">기업 의뢰하기</a>
+  </div>
+</div>
+
+<%- include('partials-foot') %>

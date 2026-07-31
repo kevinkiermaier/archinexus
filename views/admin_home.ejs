@@ -1,0 +1,23 @@
+<%- include('partials-head') %>
+<div class="container">
+  <div class="card">
+    <h1>관리자 대시보드</h1>
+    <div class="grid-stats">
+      <div class="stat-box"><div class="num"><%= vendorCount %></div><div class="label">등록 인력</div></div>
+      <div class="stat-box"><div class="num"><%= projectCount %></div><div class="label">발굴 프로젝트</div></div>
+      <% roleCounts.forEach(function(rc){ %>
+        <div class="stat-box"><div class="num"><%= rc.count %></div><div class="label"><%= rc.role %></div></div>
+      <% }) %>
+    </div>
+
+    <h2>수수료 현황 (단계형 수수료 모델 기준)</h2>
+    <div class="grid-stats">
+      <div class="stat-box"><div class="num"><%= Number(totalCommission).toLocaleString() %>원</div><div class="label">계약완료 확정 수수료</div></div>
+      <div class="stat-box"><div class="num"><%= Number(pipelineCommission).toLocaleString() %>원</div><div class="label">진행중 예상 수수료</div></div>
+    </div>
+
+    <a class="btn" href="/admin/vendors">인력풀 관리</a>
+    <a class="btn secondary" href="/admin/projects">프로젝트 트래커</a>
+  </div>
+</div>
+<%- include('partials-foot') %>

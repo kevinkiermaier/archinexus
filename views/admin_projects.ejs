@@ -1,0 +1,77 @@
+<%- include('partials-head') %>
+<div class="container">
+  <div class="card">
+    <h1>프로젝트 트래커</h1>
+    <div class="notice">수수료 정책(단계형, Malt 벤치마킹): 신규 매칭 15% · 6개월 이상 지속 7% · 지인 소개 3% — 아래 표에서 계약금액과 관계유형을 입력하면 예상 수수료가 자동 계산됩니다.</div>
+    <form class="inline" method="GET" action="/admin/projects">
+      <select name="status" onchange="this.form.submit()">
+        <option value="">전체 상태</option>
+        <% statuses.forEach(function(s){ %>
+          <option value="<%= s %>" <%= filter.status===s?'selected':'' %>><%= s %></option>
+        <% }) %>
+      </select>
+      <a class="btn small secondary" href="/admin/projects">초기화</a>
+      <a class="btn small" href="/admin/projects/new" style="margin-left:auto;">+ 프로젝트 등록</a>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>사업명</th><th>발주처/원사업자</th><th>소싱경로</th><th>필요직군</th>
+          <th>인원</th><th>예산</th><th>착수예정</th><th>상태</th><th>담당자</th><th>매칭인력</th>
+          <th>계약금액(원)</th><th>관계유형</th><th>수수료율(%)</th><th>예상수수료(원)</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% projects.forEach(function(p){ %>
+        <tr>
+          <td><%= p.id %></td>
+          <td><%= p.name %></td>
+          <td><%= p.client || '-' %></td>
+          <td><%= p.source || '-' %></td>
+          <td><%= p.needed_roles || '-' %></td>
+          <td><%= p.headcount || '-' %></td>
+          <td><%= p.budget || '-' %></td>
+          <td><%= p.start_date || '-' %></td>
+          <td>
+            <form method="POST" action="/admin/projects/<%= p.id %>/status" style="display:inline;">
+              <select name="contact_status" onchange="this.form.submit()">
+                <% statuses.forEach(function(s){ %>
+                  <option value="<%= s %>" <%= p.contact_status===s?'selected':'' %>><%= s %></option>
+                <% }) %>
+              </select>
+            </form>
+          </td>
+          <td><%= p.contact_info || '-' %></td>
+          <td><%= p.matched_vendor || '-' %></td>
+          <td><input type="number" name="contract_amount" form="commission-form-<%= p.id %>" value="<%= p.contract_amount || '' %>" style="width:110px;" placeholder="예: 90000000"></td>
+          <td>
+            <select name="relationship_type" form="commission-form-<%= p.id %>" style="width:130px;">
+              <option value="">선택</option>
+              <% ["신규 매칭","6개월 이상 지속","지인 소개"].forEach(function(rt){ %>
+                <option value="<%= rt %>" <%= p.relationship_type===rt?'selected':'' %>><%= rt %></option>
+              <% }) %>
+            </select>
+          </td>
+          <td><input type="number" step="0.1" name="commission_rate" form="commission-form-<%= p.id %>" value="<%= p.commission_rate || '' %>" style="width:70px;"></td>
+          <td><%= p.commission_amount ? Number(p.commission_amount).toLocaleString() : '-' %></td>
+          <td>
+            <button class="btn small" type="submit" form="commission-form-<%= p.id %>">저장</button>
+            <button class="btn danger small" type="submit" form="delete-form-<%= p.id %>" onclick="return confirm('삭제하시겠습니까?');">삭제</button>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (projects.length === 0) { %>
+          <tr><td colspan="15" style="text-align:center;color:#9ca3af;">등록된 프로젝트가 없습니다.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+
+    <!-- 표 바깥에 행별 저장/삭제용 form을 두고, 각 셀의 input/button은 form="" 속성으로 연결 (HTML5 표준 방식) -->
+    <% projects.forEach(function(p){ %>
+      <form id="commission-form-<%= p.id %>" method="POST" action="/admin/projects/<%= p.id %>/commission"></form>
+      <form id="delete-form-<%= p.id %>" method="POST" action="/admin/projects/<%= p.id %>/delete"></form>
+    <% }) %>
+  </div>
+</div>
+<%- include('partials-foot') %>

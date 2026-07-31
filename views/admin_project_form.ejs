@@ -1,0 +1,73 @@
+<%- include('partials-head') %>
+<div class="container">
+  <div class="card">
+    <h1>프로젝트 등록</h1>
+    <form method="POST" action="/admin/projects">
+      <label>사업명 *</label>
+      <input type="text" name="name" required>
+      <div class="two-col">
+        <div><label>발주처/원사업자</label><input type="text" name="client"></div>
+        <div><label>소싱경로</label>
+          <select name="source">
+            <option value="">선택</option>
+            <% sources.forEach(function(s){ %><option value="<%= s %>"><%= s %></option><% }) %>
+          </select>
+        </div>
+      </div>
+      <label>필요 직군 (여러 개 선택 가능)</label>
+      <select name="needed_roles" multiple size="7">
+        <% roles.forEach(function(r){ %><option value="<%= r %>"><%= r %></option><% }) %>
+      </select>
+      <div class="two-col">
+        <div><label>필요 인원</label><input type="number" name="headcount"></div>
+        <div><label>예산/단가</label><input type="text" name="budget" placeholder="예: 월 900만원"></div>
+      </div>
+      <div class="two-col">
+        <div><label>공고일 또는 낙찰일</label><input type="date" name="notice_date"></div>
+        <div><label>착수예정일</label><input type="date" name="start_date"></div>
+      </div>
+      <div class="two-col">
+        <div><label>담당자/연락처</label><input type="text" name="contact_info"></div>
+        <div><label>상태</label>
+          <select name="contact_status">
+            <% statuses.forEach(function(s){ %><option value="<%= s %>"><%= s %></option><% }) %>
+          </select>
+        </div>
+      </div>
+      <label>매칭된 인력</label>
+      <input type="text" name="matched_vendor" placeholder="인력풀 이름 입력">
+
+      <div class="notice">
+        수수료 정책(단계형): 신규 매칭 15% / 6개월 이상 지속 7% / 지인 소개 3% — 관계유형을 고르면 기본값이 자동으로 채워지며, 실제 협상 결과에 맞게 수수료율은 직접 수정할 수 있습니다.
+      </div>
+      <div class="two-col">
+        <div><label>계약금액(원)</label><input type="number" name="contract_amount" id="contract_amount" placeholder="예: 90000000"></div>
+        <div><label>관계유형</label>
+          <select name="relationship_type" id="relationship_type">
+            <option value="">선택</option>
+            <% relationshipTypes.forEach(function(rt){ %>
+              <option value="<%= rt %>" data-rate="<%= defaultRates[rt] %>"><%= rt %> (기본 <%= defaultRates[rt] %>%)</option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+      <label>수수료율(%) — 자동 제안되며 직접 수정 가능</label>
+      <input type="number" step="0.1" name="commission_rate" id="commission_rate" placeholder="예: 15">
+
+      <label>비고</label>
+      <textarea name="note"></textarea>
+      <div style="margin-top:20px;">
+        <button class="btn" type="submit">저장</button>
+        <a class="btn secondary" href="/admin/projects">취소</a>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  document.getElementById('relationship_type').addEventListener('change', function () {
+    var opt = this.options[this.selectedIndex];
+    var rate = opt.getAttribute('data-rate');
+    if (rate) document.getElementById('commission_rate').value = rate;
+  });
+</script>
+<%- include('partials-foot') %>

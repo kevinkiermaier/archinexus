@@ -1,0 +1,68 @@
+<%- include('partials-head') %>
+<div class="container">
+  <div class="card">
+    <h1>인력풀 관리</h1>
+    <form class="inline" method="GET" action="/admin/vendors">
+      <select name="role" onchange="this.form.submit()">
+        <option value="">전체 직군</option>
+        <% roles.forEach(function(r){ %>
+          <option value="<%= r %>" <%= filter.role===r?'selected':'' %>><%= r %></option>
+        <% }) %>
+      </select>
+      <select name="status" onchange="this.form.submit()">
+        <option value="">전체 상태</option>
+        <% statuses.forEach(function(s){ %>
+          <option value="<%= s %>" <%= filter.status===s?'selected':'' %>><%= s %></option>
+        <% }) %>
+      </select>
+      <input type="text" name="keyword" placeholder="이름/전문분야 검색" value="<%= filter.keyword %>" style="width:220px;">
+      <button class="btn small" type="submit">검색</button>
+      <a class="btn small secondary" href="/admin/vendors">초기화</a>
+      <a class="btn small" href="/admin/vendors/new" style="margin-left:auto;">+ 인력 직접 등록</a>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>이름</th><th>직군</th><th>등급</th><th>경력</th><th>전문분야</th>
+          <th>연락처</th><th>단가</th><th>동의</th><th>상태</th><th>소싱경로</th><th>등록일</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% vendors.forEach(function(v){ %>
+        <tr>
+          <td><%= v.id %></td>
+          <td><%= v.name %></td>
+          <td><span class="badge"><%= v.role %></span></td>
+          <td><%= v.grade || '-' %></td>
+          <td><%= v.career_years || '-' %></td>
+          <td><%= v.expertise || '-' %></td>
+          <td><%= v.phone || '-' %></td>
+          <td><%= v.rate || '-' %></td>
+          <td><%= v.consent %></td>
+          <td>
+            <form method="POST" action="/admin/vendors/<%= v.id %>/status" style="display:inline;">
+              <select name="status" onchange="this.form.submit()">
+                <% statuses.forEach(function(s){ %>
+                  <option value="<%= s %>" <%= v.status===s?'selected':'' %>><%= s %></option>
+                <% }) %>
+              </select>
+            </form>
+          </td>
+          <td><%= v.source || '-' %></td>
+          <td><%= v.created_at %></td>
+          <td>
+            <form method="POST" action="/admin/vendors/<%= v.id %>/delete" onsubmit="return confirm('삭제하시겠습니까?');" style="display:inline;">
+              <button class="btn danger" type="submit">삭제</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (vendors.length === 0) { %>
+          <tr><td colspan="13" style="text-align:center;color:#9ca3af;">등록된 인력이 없습니다.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('partials-foot') %>
