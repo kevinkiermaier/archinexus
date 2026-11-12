@@ -1,40 +1,62 @@
 <%- include('partials-head') %>
-<div class="container">
-  <div class="card">
+
+<section class="page-hero compact">
+  <div class="container">
+    <span class="eyebrow light">FOR COMPANIES</span>
     <h1>기업 의뢰하기</h1>
-    <p class="lead">필요한 직군과 프로젝트 개요를 알려주시면, 검증된 전문가를 확인 후 연락드립니다.</p>
-
-    <% if (success) { %>
-      <div class="success-banner">의뢰가 접수되었습니다. 담당자가 확인 후 빠르게 연락드리겠습니다.</div>
-    <% } %>
-
-    <form method="POST" action="/request">
-      <div class="two-col">
-        <div><label>회사명 / 발주처 *</label><input type="text" name="client" required></div>
-        <div><label>프로젝트명</label><input type="text" name="name" placeholder="예: OO시스템 고도화 프로젝트"></div>
-      </div>
-
-      <label>필요 직군 (여러 개 선택 가능) *</label>
-      <select name="needed_roles" multiple size="7" required>
-        <% roles.forEach(function(r){ %><option value="<%= r %>"><%= r %></option><% }) %>
-      </select>
-
-      <div class="two-col">
-        <div><label>필요 인원</label><input type="number" name="headcount" min="1"></div>
-        <div><label>예산/단가</label><input type="text" name="budget" placeholder="예: 월 900만원"></div>
-      </div>
-      <div class="two-col">
-        <div><label>희망 착수일</label><input type="date" name="start_date"></div>
-        <div><label>담당자 연락처 *</label><input type="text" name="contact_info" placeholder="이름 / 연락처" required></div>
-      </div>
-
-      <label>프로젝트 개요</label>
-      <textarea name="note" placeholder="프로젝트 배경, 기간, 근무 형태(상주/재택) 등을 자유롭게 적어주세요"></textarea>
-
-      <div style="margin-top:20px;">
-        <button class="btn" type="submit">의뢰 접수하기</button>
-      </div>
-    </form>
+    <p>필요한 직군과 프로젝트 개요를 알려주시면, 담당자가 당일 확인하고 검증된 전문가를 제안합니다. 의뢰와 상담은 무료입니다.</p>
   </div>
-</div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="form-layout">
+      <aside class="form-aside">
+        <h2>이렇게 진행됩니다</h2>
+        <ol class="mini-steps">
+          <li><strong>당일 확인</strong><span>담당자가 의뢰 내용을 확인하고 연락드립니다.</span></li>
+          <li><strong>전문가 제안</strong><span>조건에 맞는 전문가의 프로필을 제안하고 면담을 주선합니다.</span></li>
+          <li><strong>계약 · 투입</strong><span>계약 컴플라이언스 점검 후 표준계약서로 계약합니다.</span></li>
+        </ol>
+        <p class="muted">급한 건이거나 양식이 번거로우시면 <a href="/contact">문의하기</a>로 간단히 남겨주셔도 됩니다.</p>
+      </aside>
+
+      <div class="form-card">
+        <% if (success) { %>
+          <div class="success-banner">의뢰가 접수되었습니다. 담당자가 확인 후 빠르게 연락드리겠습니다.</div>
+        <% } %>
+        <form method="POST" action="/request">
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="two-col">
+            <div><label for="r-client">회사명 / 발주처 *</label><input id="r-client" type="text" name="client" required maxlength="200"></div>
+            <div><label for="r-name">프로젝트명</label><input id="r-name" type="text" name="name" maxlength="200" placeholder="예: OO시스템 고도화 프로젝트"></div>
+          </div>
+
+          <fieldset class="chip-group">
+            <legend>필요 직군 (여러 개 선택 가능) *</legend>
+            <% roles.forEach(function(r){ %>
+              <label class="chip-check"><input type="checkbox" name="needed_roles" value="<%= r %>"><span><%= r %></span></label>
+            <% }) %>
+          </fieldset>
+
+          <div class="two-col">
+            <div><label for="r-headcount">필요 인원</label><input id="r-headcount" type="number" name="headcount" min="1"></div>
+            <div><label for="r-budget">예산 / 단가</label><input id="r-budget" type="text" name="budget" maxlength="100" placeholder="예: 월 900만원"></div>
+          </div>
+          <div class="two-col">
+            <div><label for="r-start">희망 착수일</label><input id="r-start" type="date" name="start_date"></div>
+            <div><label for="r-contact">담당자 연락처 *</label><input id="r-contact" type="text" name="contact_info" required maxlength="200" placeholder="이름 / 연락처"></div>
+          </div>
+
+          <label for="r-note">프로젝트 개요</label>
+          <textarea id="r-note" name="note" rows="6" maxlength="4000" placeholder="프로젝트 배경, 기간, 근무 형태(상주/재택) 등을 자유롭게 적어주세요"></textarea>
+
+          <p class="form-note">남겨주신 정보는 의뢰 응대 목적으로만 사용되며, <a href="/privacy">개인정보처리방침</a>에 따라 처리됩니다.</p>
+          <button class="btn primary large" type="submit">의뢰 접수하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%- include('partials-foot') %>

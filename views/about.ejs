@@ -1,0 +1,111 @@
+<%- include('partials-head') %>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow light">ABOUT US</span>
+    <h1>필요한 사람을, 필요한 시점에,<br>검증해서 연결하는 회사</h1>
+    <p><%= brand %>는 공공·금융·대형 SI 프로젝트에 투입되는 상급 IT 전문가를 전문으로 소싱·검증·매칭하는 회사입니다.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow">
+    <div class="section-head left">
+      <span class="eyebrow">OUR MISSION</span>
+      <h2>프로젝트의 성패는 설계 단계에서 결정됩니다</h2>
+    </div>
+    <div class="prose">
+      <p>SI 프로젝트가 흔들리는 이유는 대부분 개발 인력이 부족해서가 아니라, 아키텍처와 데이터 구조, 일정과 범위를 책임질 사람이 제때 없기 때문입니다. 그런데 정작 시장의 인력 플랫폼은 주니어·중급 개발자 중심의 종합 마켓이고, 아키텍트·DBA·PM 같은 상급 인력은 여전히 지인 네트워크와 소문에 의존해 구해지고 있습니다.</p>
+      <p><%= brand %>는 이 공백을 메우기 위해 만들어졌습니다. 나라장터 낙찰·입찰 정보로 공공 SW사업의 인력 수요를 먼저 파악하고, 직접 검증한 인력풀에서 조건에 맞는 전문가를 담당자가 확인해 제안합니다. 도급·위탁 계약의 컴플라이언스까지 함께 점검해, 기업과 전문가 모두 안심하고 일할 수 있는 구조를 만듭니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">VALUES</span>
+      <h2>일하는 원칙</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="value-num">01</span>
+        <h3>좁게, 깊게</h3>
+        <p>7개 상급 직군만 다룹니다. 모든 직군을 다루는 대신, 다루는 직군에서는 가장 정확하게 검증합니다.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">02</span>
+        <h3>사람이 확인합니다</h3>
+        <p>자동 매칭에 맡기지 않습니다. 경력·레퍼런스·가용 시점을 담당자가 직접 확인한 뒤에만 제안합니다.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">03</span>
+        <h3>계약은 안전하게</h3>
+        <p>불법파견 리스크가 있는 구조는 처음부터 걸러내고, 표준계약서를 기준으로 계약과 정산을 진행합니다.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-num">04</span>
+        <h3>관계가 길수록 유리하게</h3>
+        <p>재계약과 소개가 이어질수록 수수료를 낮춥니다. 한 번의 거래보다 오래 가는 관계를 우선합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">WHAT WE DO</span>
+      <h2>사업 영역</h2>
+    </div>
+    <div class="biz-grid">
+      <article class="biz-card">
+        <h3>상급 IT 전문가 매칭</h3>
+        <p>TA·AA·DBA·SWA·SA·PM·IT컨설턴트를 공공기관·SI/SM 원사업자 프로젝트에 연결합니다. 착수 인력 보강, 벤치 부족분 보강, 장기 상주 등 다양한 형태를 지원합니다.</p>
+        <a class="link-arrow" href="/request">기업 의뢰하기 →</a>
+      </article>
+      <article class="biz-card">
+        <h3>공공 SW사업 수요 발굴</h3>
+        <p>나라장터 낙찰·입찰 공고를 상시 모니터링해 사업 착수 시점에 필요한 직군과 인원을 미리 파악하고, 원사업자와 협력사에 선제적으로 제안합니다.</p>
+        <a class="link-arrow" href="/how-it-works">진행 방식 보기 →</a>
+      </article>
+      <article class="biz-card">
+        <h3>계약 · 정산 지원</h3>
+        <p>도급·위탁·용역 계약의 적합성을 검토하고 표준계약서 기반으로 계약을 체결합니다. 프로젝트 기간 동안 정산과 이슈 대응을 함께합니다.</p>
+        <a class="link-arrow" href="/pricing">요금 안내 보기 →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container narrow">
+    <div class="section-head">
+      <span class="eyebrow">COMPANY</span>
+      <h2>회사 정보</h2>
+    </div>
+    <dl class="info-table">
+      <div><dt>회사명</dt><dd><%= company.name %><% if (brandEn) { %> (<%= brandEn %>)<% } %></dd></div>
+      <% if (company.ceo) { %><div><dt>대표자</dt><dd><%= company.ceo %></dd></div><% } %>
+      <% if (company.bizNo) { %><div><dt>사업자등록번호</dt><dd><%= company.bizNo %></dd></div><% } %>
+      <div><dt>사업 분야</dt><dd>IT 전문 인력 매칭 · 공공 SW사업 인력 소싱 · 계약 컴플라이언스 지원</dd></div>
+      <div><dt>취급 직군</dt><dd><%= roleInfo.map(function(r){ return r.code; }).join(' · ') %></dd></div>
+      <% if (company.address) { %><div><dt>주소</dt><dd><%= company.address %></dd></div><% } %>
+      <% if (company.phone) { %><div><dt>전화</dt><dd><a href="tel:<%= company.phone.replace(/[^0-9+]/g, '') %>"><%= company.phone %></a></dd></div><% } %>
+      <% if (company.email) { %><div><dt>이메일</dt><dd><a href="mailto:<%= company.email %>"><%= company.email %></a></dd></div><% } %>
+    </dl>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>함께 일할 기업과 전문가를 기다립니다</h2>
+    <p>인력 의뢰, 전문가 등록, 제휴 제안 모두 환영합니다.</p>
+    <div class="cta-row">
+      <a class="btn primary large" href="/contact">문의하기</a>
+      <a class="btn ghost large" href="/register">전문가로 등록하기</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials-foot') %>

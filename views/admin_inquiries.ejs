@@ -1,0 +1,55 @@
+<%- include('partials-head') %>
+<div class="container admin">
+  <div class="card">
+    <h1>문의 관리</h1>
+    <form class="inline" method="GET" action="/admin/inquiries">
+      <select name="status" onchange="this.form.submit()">
+        <option value="">전체 상태</option>
+        <% statuses.forEach(function(s){ %>
+          <option value="<%= s %>" <%= filter.status===s?'selected':'' %>><%= s %></option>
+        <% }) %>
+      </select>
+      <a class="btn small secondary" href="/admin/inquiries">초기화</a>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>유형</th><th>이름</th><th>회사/소속</th><th>이메일</th><th>연락처</th><th>내용</th><th>상태</th><th>접수일</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% inquiries.forEach(function(q){ %>
+        <tr>
+          <td><%= q.id %></td>
+          <td><span class="badge"><%= q.type %></span></td>
+          <td><%= q.name %></td>
+          <td><%= q.company || '-' %></td>
+          <td><%= q.email ? '' : '-' %><% if (q.email) { %><a href="mailto:<%= q.email %>"><%= q.email %></a><% } %></td>
+          <td><%= q.phone || '-' %></td>
+          <td class="wrap"><%= q.message %></td>
+          <td>
+            <form method="POST" action="/admin/inquiries/<%= q.id %>/status" style="display:inline;">
+              <select name="status" onchange="this.form.submit()">
+                <% statuses.forEach(function(s){ %>
+                  <option value="<%= s %>" <%= q.status===s?'selected':'' %>><%= s %></option>
+                <% }) %>
+              </select>
+            </form>
+          </td>
+          <td><%= q.created_at %></td>
+          <td>
+            <form method="POST" action="/admin/inquiries/<%= q.id %>/delete" onsubmit="return confirm('삭제하시겠습니까?');" style="display:inline;">
+              <button class="btn danger" type="submit">삭제</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+        <% if (inquiries.length === 0) { %>
+          <tr><td colspan="10" style="text-align:center;color:#9ca3af;">접수된 문의가 없습니다.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('partials-foot') %>

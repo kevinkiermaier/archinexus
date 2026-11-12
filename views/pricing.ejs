@@ -1,46 +1,70 @@
 <%- include('partials-head') %>
-<div class="section">
-  <span class="eyebrow">PRICING</span>
-  <h2>요금 안내</h2>
-  <p class="section-sub">전문가 등록은 무료입니다. 매칭이 성사되어 계약이 체결될 때만 수수료가 발생합니다.</p>
 
-  <div class="pricing-table-wrap">
-    <table class="pricing-table">
-      <thead>
-        <tr><th>관계유형</th><th>수수료율</th><th>설명</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>신규 매칭</td>
-          <td><span class="rate">15%</span></td>
-          <td><%= brand %>를 통해 처음 연결된 매칭입니다. 검증·컨택·계약 컴플라이언스 확인까지 포함된 수수료입니다.</td>
-        </tr>
-        <tr>
-          <td>6개월 이상 지속</td>
-          <td><span class="rate">7%</span></td>
-          <td>같은 기업-전문가 관계가 6개월 이상 이어지면 수수료율이 낮아집니다.</td>
-        </tr>
-        <tr>
-          <td>지인 소개</td>
-          <td><span class="rate">3%</span></td>
-          <td>이미 알고 있던 관계를 <%= brand %>를 통해 계약·정산 관리만 맡기는 경우 최소 수수료만 부과합니다.</td>
-        </tr>
-      </tbody>
-    </table>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow light">PRICING</span>
+    <h1>등록은 무료,<br>계약이 성사될 때만 수수료</h1>
+    <p>전문가 등록과 상담 단계에서는 어떤 비용도 발생하지 않습니다. 계약이 체결될 때 관계 유형에 따라 단계형 수수료가 산정됩니다.</p>
   </div>
+</section>
 
-  <div class="card" style="margin-top:24px;">
-    <h2>왜 이런 구조인가요</h2>
-    <p>일반적인 해외 프리랜서 플랫폼(Toptal, Catalant 등)은 전문가 단가에 마진을 얹어 청구하는 방식이라 클라이언트가 실제 수수료를 알기 어렵습니다. <%= brand %>는 유럽 플랫폼 Malt의 단계형 구조를 참고해, 관계가 이어질수록 수수료를 낮춰 장기적인 신뢰를 우선하는 방식을 택했습니다. 정확한 요율은 프로젝트 성격에 따라 협의될 수 있습니다.</p>
+<section class="section">
+  <div class="container">
+    <div class="rate-cards">
+      <div class="rate-card">
+        <span class="rate-label">신규 매칭</span>
+        <span class="rate-num"><%= rates["신규 매칭"] %>%</span>
+        <p><%= brand %>를 통해 처음 연결된 매칭입니다. 검증·컨택·계약 컴플라이언스 확인까지 포함된 수수료입니다.</p>
+      </div>
+      <div class="rate-card featured">
+        <span class="rate-label">6개월 이상 지속</span>
+        <span class="rate-num"><%= rates["6개월 이상 지속"] %>%</span>
+        <p>같은 기업-전문가 관계가 6개월 이상 이어지면 수수료율이 낮아집니다. 재계약을 유도하는 구조입니다.</p>
+      </div>
+      <div class="rate-card">
+        <span class="rate-label">지인 소개</span>
+        <span class="rate-num"><%= rates["지인 소개"] %>%</span>
+        <p>이미 알고 있던 관계를 <%= brand %>를 통해 계약·정산 관리만 맡기는 경우 최소 수수료만 부과합니다.</p>
+      </div>
+    </div>
+
+    <div class="pricing-table-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr><th>구분</th><th>비용</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>전문가 등록</td><td><strong>무료</strong></td><td>프로필 비공개, 매칭 시 동의 후 공유</td></tr>
+          <tr><td>기업 의뢰 · 상담</td><td><strong>무료</strong></td><td>전문가 제안·면담 주선까지 무료</td></tr>
+          <tr><td>매칭 성사 수수료</td><td><strong>계약금액의 <%= rates["지인 소개"] %>~<%= rates["신규 매칭"] %>%</strong></td><td>관계 유형에 따라 단계 적용, 프로젝트 성격에 따라 협의</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+</section>
 
-  <div class="cta-band">
+<section class="section soft">
+  <div class="container narrow">
+    <div class="section-head left">
+      <span class="eyebrow">WHY</span>
+      <h2>왜 이런 구조인가요</h2>
+    </div>
+    <div class="prose">
+      <p>일반적인 해외 프리랜서 플랫폼(Toptal, Catalant 등)은 전문가 단가에 마진을 얹어 청구하는 방식이라 클라이언트가 실제 수수료를 알기 어렵습니다. <%= brand %>는 유럽 플랫폼 Malt의 단계형 구조를 참고해, 관계가 이어질수록 수수료를 낮춰 장기적인 신뢰를 우선하는 방식을 택했습니다.</p>
+      <p>정확한 요율과 부담 주체는 프로젝트 성격, 계약 형태, 기간에 따라 협의될 수 있습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
     <h2>지금 문의해보세요</h2>
     <p>등록은 무료이고, 매칭 전에는 어떤 비용도 발생하지 않습니다.</p>
     <div class="cta-row">
-      <a class="btn large" href="/register">전문가로 등록하기</a>
-      <a class="btn large outline" href="/request">기업 의뢰하기</a>
+      <a class="btn primary large" href="/request">기업 의뢰하기</a>
+      <a class="btn ghost large" href="/register">전문가로 등록하기</a>
     </div>
   </div>
-</div>
+</section>
+
 <%- include('partials-foot') %>

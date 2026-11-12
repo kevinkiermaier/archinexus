@@ -1,10 +1,11 @@
 <%- include('partials-head') %>
-<div class="container">
+<div class="container admin">
   <div class="card">
     <h1>관리자 대시보드</h1>
     <div class="grid-stats">
       <div class="stat-box"><div class="num"><%= vendorCount %></div><div class="label">등록 인력</div></div>
       <div class="stat-box"><div class="num"><%= projectCount %></div><div class="label">발굴 프로젝트</div></div>
+      <div class="stat-box"><div class="num"><%= inquiryCount %></div><div class="label">미처리 문의</div></div>
       <% roleCounts.forEach(function(rc){ %>
         <div class="stat-box"><div class="num"><%= rc.count %></div><div class="label"><%= rc.role %></div></div>
       <% }) %>
@@ -18,6 +19,7 @@
 
     <a class="btn" href="/admin/vendors">인력풀 관리</a>
     <a class="btn secondary" href="/admin/projects">프로젝트 트래커</a>
+    <a class="btn secondary" href="/admin/inquiries">문의 관리</a>
   </div>
 </div>
 <%- include('partials-foot') %>

@@ -32,13 +32,34 @@ npm start
 
 | 경로 | 설명 |
 |---|---|
-| `/` | 랜딩 페이지 |
-| `/register` | 전문가(TA/AA/DBA/SWA/SA/PM/IT컨설턴트) 셀프 등록 폼 — 외부에 공개해도 되는 페이지 |
+| `/` | 회사 홈페이지 메인 (히어로, 서비스, 7개 직군, 진행 방식, 수수료, FAQ) |
+| `/about` | 회사소개 (미션, 일하는 원칙, 사업 영역, 회사 정보) |
+| `/how-it-works` | 서비스 소개 / 진행 방식 |
+| `/pricing` | 요금 안내 (단계형 수수료) |
+| `/contact` | 문의하기 폼 — 접수 내용은 `/admin/inquiries`에서 확인 |
+| `/privacy` | 개인정보처리방침 |
+| `/register` | 전문가(TA/AA/DBA/SWA/SA/PM/IT컨설턴트) 셀프 등록 폼 |
+| `/request` | 기업 의뢰 폼 |
 | `/admin` | 관리자 대시보드 (요약 통계) |
 | `/admin/vendors` | 인력풀 목록/검색/상태 변경/삭제 |
 | `/admin/vendors/new` | 관리자가 직접 인력 등록 (지인·잡코리아 소싱분 입력용) |
 | `/admin/projects` | 프로젝트 트래커 목록/상태 변경/삭제 |
 | `/admin/projects/new` | 프로젝트 신규 등록 (나라장터·채용공고·지인 발굴분 입력용) |
+| `/admin/inquiries` | 문의 목록/상태 변경/삭제 |
+
+### 회사 정보 표시
+
+`.env`에 아래 값을 넣으면 푸터·회사소개·문의·개인정보처리방침 페이지에 자동으로 표시됩니다. 비워두면 해당 항목은 화면에 나오지 않습니다.
+
+```
+COMPANY_NAME=주식회사 OOO        # 법인명 (비우면 BRAND_NAME 사용)
+COMPANY_CEO=홍길동
+COMPANY_BIZ_NO=123-45-67890
+COMPANY_ADDRESS=서울특별시 ...
+COMPANY_PHONE=02-000-0000
+COMPANY_EMAIL=contact@it-soft.co.kr
+SITE_URL=https://it-soft.co.kr   # canonical / og:url 생성용
+```
 
 ## 3. 온라인에 공개하기 (터미널 없이, GitHub 웹 업로드 + Render)
 
@@ -59,7 +80,7 @@ npm start
 3. 설정값:
    - Build Command: `npm install`
    - Start Command: `npm start`
-   - Environment Variables: `.env.example`에 있는 값들을 그대로 등록 (`ADMIN_USER`, `ADMIN_PASSWORD`, `BRAND_NAME`)
+   - Environment Variables: `.env.example`에 있는 값들을 등록 (`ADMIN_USER`, `ADMIN_PASSWORD`, `BRAND_NAME`, `COMPANY_*`, `SITE_URL`)
 4. `Create Web Service` 클릭 → 몇 분 내로 `https://archinexus-xxxx.onrender.com` 같은 실제 주소가 생깁니다.
 
 **이후 업데이트 방법**: 코드가 바뀔 때마다 위 3-1의 `Add file → Upload files`로 바뀐 파일만 다시 올리고 커밋하면, Render가 자동으로 재배포합니다. 로컬에서 압축 풀고 실행할 필요가 없어집니다.

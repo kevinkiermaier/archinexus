@@ -1,3 +1,45 @@
-<footer>&copy; <%= new Date().getFullYear() %> <%= brand %> — TA·AA·DBA·SWA·SA·PM·IT컨설턴트 전문 매칭</footer>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="brand"><img src="/logo.svg" alt="" width="30" height="30"><span><%= brand %></span></a>
+      <p>설계와 의사결정을 책임지는 상급 IT 전문가를 검증해 연결합니다.<br>TA · AA · DBA · SWA · SA · PM · IT컨설턴트</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>서비스</h4>
+        <a href="/request">기업 의뢰하기</a>
+        <a href="/register">전문가 등록</a>
+        <a href="/how-it-works">진행 방식</a>
+        <a href="/pricing">요금 안내</a>
+      </div>
+      <div>
+        <h4>회사</h4>
+        <a href="/about">회사소개</a>
+        <a href="/contact">문의하기</a>
+        <a href="/privacy">개인정보처리방침</a>
+        <a href="/admin" rel="nofollow">관리자</a>
+      </div>
+      <div>
+        <h4>연락처</h4>
+        <% if (company.email) { %><a href="mailto:<%= company.email %>"><%= company.email %></a><% } %>
+        <% if (company.phone) { %><a href="tel:<%= company.phone.replace(/[^0-9+]/g, '') %>"><%= company.phone %></a><% } %>
+        <% if (!company.email && !company.phone) { %><a href="/contact">문의 페이지에서 연락주세요</a><% } %>
+      </div>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <div class="footer-inner">
+      <p>
+        <%= company.name %>
+        <% if (company.ceo) { %> · 대표 <%= company.ceo %><% } %>
+        <% if (company.bizNo) { %> · 사업자등록번호 <%= company.bizNo %><% } %>
+        <% if (company.address) { %> · <%= company.address %><% } %>
+      </p>
+      <p>&copy; <%= new Date().getFullYear() %> <%= company.name %>. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
 </body>
 </html>

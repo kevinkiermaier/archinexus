@@ -3,17 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= brand %></title>
+  <title><%= pageTitle ? pageTitle + ' | ' + brand : brand + ' — 상급 IT 전문가 매칭 (TA·AA·DBA·SWA·SA·PM·IT컨설턴트)' %></title>
+  <meta name="description" content="<%= pageDesc %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= brand %>">
+  <meta property="og:title" content="<%= pageTitle ? pageTitle + ' | ' + brand : brand + ' — 상급 IT 전문가 매칭' %>">
+  <meta property="og:description" content="<%= pageDesc %>">
+  <% if (company.siteUrl) { %><meta property="og:url" content="<%= company.siteUrl.replace(/\/$/, '') + path %>"><link rel="canonical" href="<%= company.siteUrl.replace(/\/$/, '') + path %>"><% } %>
+  <% if (isAdmin) { %><meta name="robots" content="noindex, nofollow"><% } %>
+  <meta name="theme-color" content="#0f1b2d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<header class="topbar">
-  <a href="/" class="brand"><%= brand %></a>
-  <nav>
-    <a href="/how-it-works">서비스 소개</a>
-    <a href="/register">전문가로 등록</a>
-    <a href="/request">기업 의뢰하기</a>
-    <a href="/pricing">요금 안내</a>
-    <a href="/admin">관리자</a>
-  </nav>
+<body class="<%= isAdmin ? 'admin-body' : '' %>">
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="<%= brand %> 홈">
+      <img src="/logo.svg" alt="" width="34" height="34">
+      <span class="brand-text"><%= brand %><small><%= brandEn %></small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="주 메뉴">
+      <a href="/about" class="<%= path === '/about' ? 'active' : '' %>">회사소개</a>
+      <a href="/how-it-works" class="<%= path === '/how-it-works' ? 'active' : '' %>">서비스</a>
+      <a href="/#roles">전문 직군</a>
+      <a href="/pricing" class="<%= path === '/pricing' ? 'active' : '' %>">요금 안내</a>
+      <a href="/contact" class="<%= path === '/contact' ? 'active' : '' %>">문의하기</a>
+      <div class="nav-cta">
+        <a href="/register" class="btn ghost">전문가 등록</a>
+        <a href="/request" class="btn primary">기업 의뢰</a>
+      </div>
+    </nav>
+  </div>
 </header>
+<% if (isAdmin) { %>
+<nav class="admin-bar" aria-label="관리자 메뉴">
+  <div class="admin-bar-inner">
+    <span class="admin-label">관리자</span>
+    <a href="/admin" class="<%= path === '/admin' ? 'active' : '' %>">대시보드</a>
+    <a href="/admin/vendors" class="<%= path.startsWith('/admin/vendors') ? 'active' : '' %>">인력풀</a>
+    <a href="/admin/projects" class="<%= path.startsWith('/admin/projects') ? 'active' : '' %>">프로젝트</a>
+    <a href="/admin/inquiries" class="<%= path.startsWith('/admin/inquiries') ? 'active' : '' %>">문의</a>
+  </div>
+</nav>
+<% } %>
+<main id="main">
